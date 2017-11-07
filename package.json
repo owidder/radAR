@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/ngokevin/aframe-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/ngokevin/aframe-react-boilerplate#readme",
+  "homepage": "https://owidder.github.io/radAR/",
   "devDependencies": {
     "gh-pages": "^0.12.0",
     "autoprefixer": "6.7.2",
