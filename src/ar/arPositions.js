@@ -12,11 +12,17 @@ export const TYPE_TABLE = "table";
 export const DEFAULT_NUMBER_OF_POSSIBLE_PLACES = 50;
 export const DEFAULT_NUMBER_PF_TABLE_COLUMNS = 3;
 
+const addOffsetToPhaseFrom0To2 = (phase, offset = 0) => {
+    const newPhase = (phase + (offset / 500)) % 2;
+    return newPhase >= 0 ? newPhase : newPhase + 2;
+}
+
 export const randomSphereInit = (numberOfPossiblePlaces) => {
     const shuffledPlaces = _.shuffle(_.range(0, numberOfPossiblePlaces-1));
 
-    return (i) => {
-        const phi = Math.acos(-1 + 2 * shuffledPlaces[i] / numberOfPossiblePlaces);
+    return (i, offset = 0) => {
+        const phaseWithOffset = addOffsetToPhaseFrom0To2(2 * shuffledPlaces[i] / numberOfPossiblePlaces, offset);
+        const phi = Math.acos(-1 + phaseWithOffset);
         const theta = Math.sqrt((numberOfPossiblePlaces - 1) * Math.PI) * phi;
 
         const random = new THREE.Object3D();
@@ -34,8 +40,12 @@ export const randomSphereInit = (numberOfPossiblePlaces) => {
 
 export const randomSphere = randomSphereInit(DEFAULT_NUMBER_OF_POSSIBLE_PLACES);
 
+const tableOffset = (offset = 0) => {
+    return 10 * offset;
+}
+
 export const tableInit = (numberOfCols, _cellWidth, _cellHeight, _xOffset, _yOffset, _zOffset) => {
-    return (i) => {
+    return (i, offset = 0) => {
         const cellWidth = _.isUndefined(_cellWidth) ? 800 : _cellWidth;
         const cellHeight = _.isUndefined(_cellHeight) ? 400 : _cellHeight;
         const xOffset = _.isUndefined(_xOffset) ? -1330 : _xOffset;
@@ -44,7 +54,7 @@ export const tableInit = (numberOfCols, _cellWidth, _cellHeight, _xOffset, _yOff
         const row = Math.floor(i / numberOfCols);
         const col = i % numberOfCols;
         const table = new THREE.Object3D();
-        table.position.x = (col * cellWidth) + xOffset;
+        table.position.x = (col * cellWidth) + xOffset - tableOffset(offset);
         table.position.y = -(row * cellHeight) + yOffset;
         table.position.z = zOffset;
 
@@ -54,14 +64,22 @@ export const tableInit = (numberOfCols, _cellWidth, _cellHeight, _xOffset, _yOff
 
 export const table = tableInit(DEFAULT_NUMBER_PF_TABLE_COLUMNS);
 
-export const sphere = (numberOfBodies, i) => {
-    const phi = Math.acos(-1 + 2 * i / numberOfBodies);
+export const sphereInit = (radius) => {
+    return (numberOfBodies, i, offset) => {
+        return sphere(numberOfBodies, i, offset, radius);
+    }
+}
+
+export const sphere = (numberOfBodies, i, offset = 0, radius = 800) => {
+    const phaseWithOffset = addOffsetToPhaseFrom0To2(2 * i / numberOfBodies, offset);
+
+    const phi = Math.acos(-1 + phaseWithOffset);
     const theta = Math.sqrt((numberOfBodies - 1) * Math.PI) * phi;
 
     const sphere = new THREE.Object3D();
-    sphere.position.x = 800 * Math.cos(theta) * Math.sin(phi);
-    sphere.position.y = 800 * Math.sin(theta) * Math.sin(phi);
-    sphere.position.z = 800 * Math.cos(phi);
+    sphere.position.x = radius * Math.cos(theta) * Math.sin(phi);
+    sphere.position.y = radius * Math.sin(theta) * Math.sin(phi);
+    sphere.position.z = radius * Math.cos(phi);
 
     const vector = new THREE.Vector3();
     vector.copy(sphere.position).multiplyScalar(-2);
@@ -70,10 +88,12 @@ export const sphere = (numberOfBodies, i) => {
     return sphere
 };
 
-export const helix = (numberOfBodies, i) => {
+export const helix = (numberOfBodies, i, offset = 0) => {
+    const phaseWithOffset = addOffsetToPhaseFrom0To2(2 * i / numberOfBodies, offset);
+
     const helix = new THREE.Object3D();
     const vector = new THREE.Vector3();
-    const phi = i/numberOfBodies * 2 * Math.PI;
+    const phi = phaseWithOffset * Math.PI;
 
     helix.position.x = 1000 * Math.sin(phi);
     helix.position.y = -(i * 8) + 500;
@@ -88,14 +108,22 @@ export const helix = (numberOfBodies, i) => {
     return helix;
 };
 
-export const ring = (numberOfBodies, i) => {
+export const ringInit = (radius) => {
+    return (numberOfBodies, i, offset) => {
+        return ring(numberOfBodies, i, offset, radius);
+    }
+}
+
+export const ring = (numberOfBodies, i, offset = 0, radius = 3000) => {
+    const phaseWithOffset = addOffsetToPhaseFrom0To2(2 * i / numberOfBodies, offset);
+
     const ring = new THREE.Object3D();
     const vector = new THREE.Vector3();
-    const phi = i/numberOfBodies * 2 * Math.PI;
+    const phi = phaseWithOffset * Math.PI;
 
-    ring.position.x = 3000 * Math.sin(phi);
+    ring.position.x = radius * Math.sin(phi);
     ring.position.y = 100;
-    ring.position.z = 3000 * Math.cos(phi);
+    ring.position.z = radius * Math.cos(phi);
 
     vector.x = -ring.position.x * 2;
     vector.y = -ring.position.y;
@@ -122,40 +150,50 @@ const addToRoot = (element, root, position, rotation) => {
     return object;
 }
 
-export const getArPositionRotation = (type, i, num, positionFunction) => {
+export const getArPositionRotation = (type, i, num, positionFunction, offset) => {
     let three3dObject;
 
     switch (type) {
         case TYPE_HELIX:
-             three3dObject = helix(num, i);
+             three3dObject = helix(num, i, offset);
              break;
 
 
         case TYPE_SPHERE:
-            three3dObject = sphere(num, i);
+            if(_.isFunction(positionFunction)) {
+                three3dObject = positionFunction(num, i, offset);
+            }
+            else {
+                three3dObject = sphere(num, i, offset);
+            }
             break;
 
 
         case TYPE_RING:
-            three3dObject = ring(num, i);
+            if(_.isFunction(positionFunction)) {
+                three3dObject = positionFunction(num, i, offset);
+            }
+            else {
+                three3dObject = ring(num, i, offset);
+            }
             break;
 
 
         case TYPE_SPHERE_RANDOM:
             if(_.isFunction(positionFunction)) {
-                three3dObject = positionFunction(i);
+                three3dObject = positionFunction(i, offset);
             }
             else {
-                three3dObject = randomSphere(i);
+                three3dObject = randomSphere(i, offset);
             }
             break;
 
         case TYPE_TABLE:
             if(_.isFunction(positionFunction)) {
-                three3dObject = positionFunction(i);
+                three3dObject = positionFunction(i, offset);
             }
             else {
-                three3dObject = table(i);
+                three3dObject = table(i, offset);
             }
             break;
 

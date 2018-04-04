@@ -1,19 +1,21 @@
 import * as _ from 'lodash';
 
 import {log} from '../util/log';
-import {setArPositionRotation, TYPE_RING} from '../ar/arPositions';
+import {setArPositionRotation, TYPE_RING, ringInit} from '../ar/arPositions';
 import {init} from '../ar/argonApp';
-import {CommandHub} from './control/commandHub';
+import {connect} from './control/commandHub';
+import {executeCommand, COMMAND_INIT} from './control/commandExecutor';
 import {slideControl} from './control/SlideControl';
 import * as key from './slidAR/key';
 import * as query from '../util/query';
 import * as slidAR from './slidAR/slidAR';
 import {slidarGlobal} from './slidAR/slidarGlobal';
 import * as steps from './slidAR/steps';
+import * as hudUtil from "../ar/hudUtil";
 
 window.slidAR = slidAR;
 
-const TWEEN = require('@tweenjs/tween.js');
+const TWEEN = window.TWEEN;
 slideControl.setTWEEN(TWEEN);
 
 const startSlideShow = (slideShowIntervalInSeconds) => {
@@ -24,14 +26,37 @@ const startSlideShow = (slideShowIntervalInSeconds) => {
     }
 }
 
+const checkIfMaster = () => {
+    const master = query.paramValue("master");
+    slidarGlobal.isMaster = !_.isUndefined(master);
+}
+
+const addHudButtons = () => {
+    const onLeftClick = () => slideControl.moveOffsetOnAllSlides(+10);
+    const onRightClick = () => slideControl.moveOffsetOnAllSlides(-10);
+
+    hudUtil.addLeftRightButtons("#_hud", onLeftClick, onRightClick);
+}
+
+const createPositionFunction = (type, radius) => {
+    if(type == TYPE_RING && radius > 0) {
+        return ringInit(Number(radius));
+    }
+}
+
 export const initSlides = async (rootSelector, slideCreateFunction, param) => {
     key.init();
-    new CommandHub();
+    connect();
 
     const selectedFilename = query.paramValue("slide");
-    const type = query.paramValue("type");
+    const nonar = query.paramValue("nonar");
+    const type = query.paramValue("type") || TYPE_RING;
+    const radius = query.paramValue("radius");
+    checkIfMaster();
 
-    if(_.isEmpty(selectedFilename)) {
+    const positionFunction = createPositionFunction(type, radius);
+
+    if(_.isEmpty(selectedFilename) && _.isEmpty(nonar)) {
         slidarGlobal.withAr = true;
         const slideShowIntervalInSeconds = param;
         const {root, app} = init();
@@ -43,7 +68,7 @@ export const initSlides = async (rootSelector, slideCreateFunction, param) => {
         const selection = await slideCreateFunction(rootSelector);
         log.info("demo slides ready")
         selection.each(function (id, i) {
-            const object = setArPositionRotation(this, root, type || TYPE_RING, i, selection.size());
+            const object = setArPositionRotation(this, root, type, i, selection.size(), positionFunction);
             slideControl.addObject(id, object);
         });
 
@@ -51,6 +76,13 @@ export const initSlides = async (rootSelector, slideCreateFunction, param) => {
     }
     else {
         slidarGlobal.withAr = false;
-        slideCreateFunction(rootSelector, selectedFilename).then(() => steps.init());
+        if(!_.isEmpty(selectedFilename)) {
+            slideControl.setCurrentSlideId(selectedFilename);
+            await slideCreateFunction(rootSelector, selectedFilename).then(() => steps.init());
+        }
     }
+
+    addHudButtons();
+
+    executeCommand(COMMAND_INIT);
 }

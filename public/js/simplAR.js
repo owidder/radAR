@@ -1,3 +1,5 @@
+/* global simplAR */
+
 (function () {
 
     function addPathToFileneme(filename) {
@@ -21,7 +23,7 @@
     }
 
     function _wait(resolve) {
-        if(typeof window.simplAR === 'undefined' || typeof window._pages === 'undefined') {
+        if(typeof window.simplAR === 'undefined') {
             setTimeout(function () {
                 _wait(resolve);
             }, 100);
@@ -39,8 +41,19 @@
 
     if(!window._pages_ready && window.location.href.indexOf("simplAR") > -1) {
         wait().then(function () {
+            window._pagesinit();
             addPages();
-            window._start();
+
+            const type = simplAR.paramValue("simplAR");
+            switch (type) {
+                case "ticker":
+                    window._startticker();
+                    break;
+
+                default:
+                    window._startcode();
+                    break;
+            }
         })
     }
 })()

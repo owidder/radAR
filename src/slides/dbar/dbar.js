@@ -16,10 +16,20 @@ export const init = async (rootSelector, selectedFilename) => {
 
     await Promise.all([
         slidesUtil.createSlide(createFct, "title", selectedFilename),
+        slidesUtil.createSlide(createFct, "qrcode", selectedFilename),
         slidesUtil.createSlide(createFct, "css3d", selectedFilename),
         slidesUtil.createSlide(createFct, "cube", selectedFilename),
         slidesUtil.createSlide(createFct, "graph", selectedFilename),
         slidesUtil.createSlide(createFct, "backAndFront", selectedFilename),
+        slidesUtil.createSlide(createFct, "argontitle", selectedFilename),
+        slidesUtil.createSlide(createFct, "argon", selectedFilename),
+        slidesUtil.createSlide(createFct, "threejstitle", selectedFilename),
+        slidesUtil.createSlide(createFct, "positionRotation", selectedFilename),
+        slidesUtil.createSlide(createFct, "simplartitle", selectedFilename),
+        slidesUtil.createSlide(createFct, "pagejstitle", selectedFilename),
+        slidesUtil.createSlide(createFct, "pagejs", selectedFilename),
+        slidesUtil.createSlide(createFct, "codejstitle", selectedFilename),
+        slidesUtil.createSlide(createFct, "codejs", selectedFilename),
     ])
 
     if(_.isEmpty(selectedFilename)) {
