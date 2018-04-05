@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/radAR/build/";
+/******/ 	__webpack_require__.p = "/build/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 208);
@@ -75289,4 +75289,4 @@ var connect=function connect(onMessageCallback){return __WEBPACK_IMPORTED_MODULE
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.82655bb6.js.map
+//# sourceMappingURL=main.6fd207ae.js.map
