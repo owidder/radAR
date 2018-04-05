@@ -2,5 +2,6 @@
 node_modules
 .idea
 npm-debug.log
-build
 domAR.iml
+nohup.out
+
