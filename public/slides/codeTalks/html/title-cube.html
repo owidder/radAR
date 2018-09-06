@@ -1,0 +1,43 @@
+<style>
+
+    @keyframes graph-animate-cube {
+        33% {transform: rotateX(360deg) rotateY(0deg) rotateZ(0deg)}
+        66% {transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg)}
+        66% {transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg)}
+    }
+
+    #title-cube .animate-cube {
+        animation: graph-animate-cube 100s infinite ease-in-out;
+    }
+
+    #title-cube .with-etherscan {
+        background-image: url("./slides/codeTalks/img/etherscan.png");
+        background-size: cover;
+        background-position: left top;
+    }
+
+    #title-cube .with-ethereum {
+        background-image: url("./slides/codeTalks/img/Ethereum.png");
+        background-size: cover;
+        background-position: left top;
+    }
+
+</style>
+
+<div id="_titlecube">
+</div>
+
+<script>
+
+    /* global slidAR */
+
+    (function () {
+
+        const ID = "title-cube";
+
+        slidAR.cube.create("#_titlecube", 350);
+        slidAR.classUtil.setClass("#_titlecube .cube-back", "with-etherscan");
+        slidAR.classUtil.setClass("#_titlecube .cube-front", "with-ethereum");
+    })()
+
+</script>
