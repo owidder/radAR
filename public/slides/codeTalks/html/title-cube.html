@@ -55,10 +55,11 @@
 
         slidAR.cube.create("#_titlecube", 350);
         slidAR.classUtil.setClass("#_titlecube .cube-back", "with-etherscan");
-        slidAR.classUtil.setClass("#_titlecube .cube-front", "with-ethereum");
+        slidAR.classUtil.setClass("#_titlecube .cube-top", "with-ethereum");
         slidAR.classUtil.setClass("#_titlecube .cube-bottom", "with-metamask");
         slidAR.classUtil.setClass("#_titlecube .cube-right", "with-rinkeby-faucet");
         slidAR.classUtil.setClass("#_titlecube .cube-left", "with-javascript");
+        slidAR.coolText.glowText.create("#" + ID + " .cube-front", ["Clients", "für", "die", "Blockchain"], "normal glow");
 
         slidAR.initPhase.markSlideAsReady(ID);
 
