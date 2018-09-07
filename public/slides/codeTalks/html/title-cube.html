@@ -22,6 +22,24 @@
         background-position: left top;
     }
 
+    #title-cube .with-metamask {
+        background-image: url("./slides/codeTalks/img/metamask.png");
+        background-size: cover;
+        background-position: left top;
+    }
+
+    #title-cube .with-rinkeby-faucet {
+        background-image: url("./slides/codeTalks/img/rinkeby-faucet.png");
+        background-size: cover;
+        background-position: left top;
+    }
+
+    #title-cube .with-javascript {
+        background-image: url("./slides/codeTalks/img/javascript.png");
+        background-size: cover;
+        background-position: left top;
+    }
+
 </style>
 
 <div id="_titlecube">
@@ -38,6 +56,12 @@
         slidAR.cube.create("#_titlecube", 350);
         slidAR.classUtil.setClass("#_titlecube .cube-back", "with-etherscan");
         slidAR.classUtil.setClass("#_titlecube .cube-front", "with-ethereum");
+        slidAR.classUtil.setClass("#_titlecube .cube-bottom", "with-metamask");
+        slidAR.classUtil.setClass("#_titlecube .cube-right", "with-rinkeby-faucet");
+        slidAR.classUtil.setClass("#_titlecube .cube-left", "with-javascript");
+
+        slidAR.initPhase.markSlideAsReady(ID);
+
     })()
 
 </script>
