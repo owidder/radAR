@@ -40,10 +40,23 @@
         background-position: left top;
     }
 
+    #title-cube .with-truffle {
+        background-image: url("./slides/codeTalks/img/truffle.png");
+        background-size: cover;
+        background-position: left top;
+    }
+
+    #title-cube .with-infura {
+        background-image: url("./slides/codeTalks/img/infura.jpg");
+        background-size: cover;
+        background-position: left top;
+    }
+
 </style>
 
-<div id="_titlecube">
-</div>
+<div class="slidecounter"></div>
+
+<div id="_titlecube"></div>
 
 <script>
 
@@ -54,15 +67,27 @@
         const ID = "title-cube";
 
         slidAR.cube.create("#_titlecube", 350);
+        slidAR.cube.startStopAnimation(false);
+
         slidAR.classUtil.setClass("#_titlecube .cube-back", "with-etherscan");
+
         slidAR.classUtil.setClass("#_titlecube .cube-top", "with-ethereum");
+
         slidAR.classUtil.setClass("#_titlecube .cube-bottom", "with-metamask");
-        slidAR.classUtil.setClass("#_titlecube .cube-right", "with-rinkeby-faucet");
-        slidAR.classUtil.setClass("#_titlecube .cube-left", "with-javascript");
+
+        slidAR.classUtil.switchBetweenClasses("#_titlecube .cube-right",
+            ["with-rinkeby-faucet", "with-infura"], 2000)
+
+        slidAR.classUtil.switchBetweenClasses("#_titlecube .cube-left",
+            ["with-truffle", "with-javascript"], 2500)
+
         slidAR.coolText.glowText.create("#" + ID + " .cube-front", ["Clients", "für", "die", "Blockchain"], "normal glow");
 
-        slidAR.initPhase.markSlideAsReady(ID);
+        startStopStep = slidAR.cube.startStopAnimationStepWithReverse();
 
+        slidAR.steps.set("title-cube", [startStopStep.step, startStopStep.reverseStep]);
+
+        slidAR.initPhase.markSlideAsReady(ID);
     })()
 
 </script>

@@ -66,6 +66,19 @@ export const removeClasses = (selector, classNames) => {
     })
 }
 
+const _switchBetweenClassesRecursive = (selector, classNames, intervalInMs, counter) => {
+    const oldCounter = counter;
+    const newCounter = counter < classNames.length-1 ? counter+1 : 0;
+    switchClasses(selector, classNames[oldCounter], classNames[newCounter]);
+
+    setTimeout(()=> _switchBetweenClassesRecursive(selector, classNames, intervalInMs, newCounter), intervalInMs);
+}
+
+export const switchBetweenClasses = (selector, classNames, intervalInMs) => {
+    setClass(selector, classNames[0]);
+    setTimeout(() => _switchBetweenClassesRecursive(selector, classNames, intervalInMs, 0), intervalInMs);
+}
+
 export const setClassStep = (selector, className, intervalInMs) => {
     return {
         f: () => setClass(selector,className, intervalInMs),
@@ -104,5 +117,6 @@ export const classUtil = {
     set2ClassesStep,
     switchClasses,
     switchClassesStep,
-    switchClassesStepWithReverse
+    switchClassesStepWithReverse,
+    switchBetweenClasses,
 };

@@ -1,7 +1,9 @@
 import * as d3 from 'd3';
 import * as $ from 'jquery';
+import {createReverseStep} from './steps';
 
 const vsprintf = require('sprintf-js').vsprintf;
+
 
 export const SIDE_NAME_FRONT = "cube-front";
 export const SIDE_NAME_BACK = "cube-back";
@@ -118,13 +120,24 @@ export const createWithCanvasStep = (containerSelector, sizeInPx) => {
 }
 
 export const startStopAnimation = (trueIfStart) => {
+    console.log("startStopAnimation: " + trueIfStart)
     d3.selectAll("div._cube")
         .classed("animate-cube", trueIfStart)
+}
+
+export const startStopAnimationStepWithReverse = () => {
+    const step = {
+        f: () => startStopAnimation(true),
+        b: () => startStopAnimation(false)
+    }
+
+    return createReverseStep(step);
 }
 
 export const cube = {
     create,
     createWithCanvas,
     createWithCanvasStep,
-    startStopAnimation
+    startStopAnimation,
+    startStopAnimationStepWithReverse,
 }
