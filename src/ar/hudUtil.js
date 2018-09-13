@@ -14,10 +14,13 @@ export const addLeftRightButtons = (hudSelector, onLeftClick, onRightClick) => {
             .attr("class", "menu _hudmenu")
 
         addHudButton(menu, "lefthud", "arrow_back", onLeftClick);
-        menu.append("div")
-            .attr("class", "leftright")
-            .append("text")
-            .text("Press left-/right arrow keys or click on the arrow-buttons")
+
+        if(slidarGlobal.withHudText) {
+            menu.append("div")
+                .attr("class", "leftright")
+                .append("text")
+                .text("Press left-/right arrow keys or click on the arrow-buttons")
+        }
         addHudButton(menu, "righthud", "arrow_forward", onRightClick);
     }
 }

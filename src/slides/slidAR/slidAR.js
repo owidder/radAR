@@ -25,6 +25,7 @@ import {title} from './coolText/Title';
 import {rinkeby} from '../slowSnakes/Rinkeby';
 import {initPhase} from './initPhase';
 import {RinkebyBlockCounter} from '../slowSnakes/RinkebyBlockCounter';
+import {metamaskLogo} from './metamask/metamaskLogo';
 
 const coolText = {
     glowText, title
@@ -54,5 +55,6 @@ export const slidAR = {
     scripts,
     slowSnakes,
     initPhase,
+    metamaskLogo,
 };
 

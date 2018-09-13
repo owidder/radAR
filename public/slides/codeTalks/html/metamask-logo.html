@@ -1,0 +1,20 @@
+<style>
+
+
+</style>
+
+<div class="slidecounter"></div>
+<div class="logo"></div>
+
+<script>
+
+    /* global slidAR */
+
+    (function () {
+        const ID = "metamask-logo";
+
+        slidAR.metamaskLogo.create("#" + ID + " .logo");
+
+        slidAR.initPhase.markSlideAsReady(ID);
+    })()
+</script>

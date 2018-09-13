@@ -64,6 +64,7 @@ switch (bodyType) {
 
     case BODY_TYPE_CODE_TALKS:
         slidarGlobal.slidesFolder = "slides/codeTalks/html/";
+        slidarGlobal.withHudText = false;
         initSlides("#container", codeTalks.init, paramValue);
         break;
 

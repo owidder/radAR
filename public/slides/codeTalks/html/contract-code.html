@@ -1,0 +1,32 @@
+<style>
+
+
+</style>
+
+<div class="slidecounter"></div>
+<div class="title"></div>
+<div class="code"></div>
+
+<script>
+
+    /* global slidAR */
+
+    (function () {
+        const ID = "contract-code";
+
+        slidAR.coolText.glowText.create("#" + ID + " .title", ["Super simple contract",], "middle-large glow");
+
+        slidAR.showCode.js("#" + ID + " .code",
+            "pragma solidity ^0.4.19;\n" +
+            "contract Weisenheimer {\n" +
+            "\n" +
+            "    event NewHashValue(string, address, uint);\n" +
+            "\n" +
+            "    function logHashValue(string hashValue) public {    \n" +
+            "\t    emit NewHashValue(hashValue, msg.sender, block.timestamp);\n" +
+            "    }\n" +
+            "}\n");
+
+        slidAR.initPhase.markSlideAsReady(ID);
+    })()
+</script>
