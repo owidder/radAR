@@ -38,33 +38,40 @@ const paramValue = query.paramValue(bodyType);
 
 switch (bodyType) {
     case BODY_TYPE_CUBE:
+        document.title = "Cubes";
         appendStyles(['css/demo.css']);
         initCubes(paramValue);
         break;
 
     case BODY_TYPE_RADAR:
+        document.title = "Radar";
         appendStyles(['css/demo.css']);
         initRadars();
         break;
 
     case BODY_TYPE_SLIDE_DEMO:
+        document.title = "Demo";
         appendStyles(['css/slides.css']);
         initSlides("#container", demoSlides, paramValue);
         break;
 
     case BODY_TYPE_SLIDE_DBAR:
+        document.title = "DOM based AR";
         slidarGlobal.slidesFolder = "slides/3dd3/html/";
         initSlides("#container", dbar.init, paramValue);
         break;
 
     case BODY_TYPE_SLIDE_SLOW_SNAKES:
+        document.title = "Slow Snakes";
         slidarGlobal.slidesFolder = "slides/slowSnakes/html/";
         initSlides("#container", slowSnakes.init, paramValue);
         break;
 
     case BODY_TYPE_CODE_TALKS:
+        document.title = "code.talks";
         slidarGlobal.slidesFolder = "slides/codeTalks/html/";
         slidarGlobal.withHudText = false;
+        slidarGlobal.markActiveSlide = false;
         initSlides("#container", codeTalks.init, paramValue);
         break;
 

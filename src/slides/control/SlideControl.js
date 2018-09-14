@@ -303,13 +303,17 @@ class SlideControl {
     }
 
     unactive() {
-        d3.selectAll("#" + this.currentSlideId)
-            .classed("activeslide", false)
+        if(slidarGlobal.markActiveSlide) {
+            d3.selectAll("#" + this.currentSlideId)
+                .classed("activeslide", false)
+        }
     }
 
     active() {
-        d3.selectAll("#" + this.currentSlideId)
-            .classed("activeslide", true)
+        if(slidarGlobal.markActiveSlide) {
+            d3.selectAll("#" + this.currentSlideId)
+                .classed("activeslide", true)
+        }
     }
 
     setCurrentSlideId(slideId) {

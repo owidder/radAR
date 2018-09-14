@@ -13,7 +13,11 @@
     (function () {
         const ID = "metamask-logo";
 
-        slidAR.metamaskLogo.create("#" + ID + " .logo");
+        const viewer = slidAR.metamaskLogo.create("#" + ID + " .logo");
+
+        const startStep = slidAR.metamaskLogo.startStepWithReverse(viewer);
+
+        slidAR.steps.set(ID, [startStep.step, startStep.reverseStep]);
 
         slidAR.initPhase.markSlideAsReady(ID);
     })()

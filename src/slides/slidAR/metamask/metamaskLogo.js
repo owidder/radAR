@@ -1,3 +1,5 @@
+import {createReverseStep} from '../steps';
+
 const ModelViewer = require('metamask-logo')
 
 export const create = (selector) => {
@@ -38,13 +40,24 @@ export const start = (viewer) => {
     viewer.setFollowMouse(true)
 }
 
+export const startStepWithReverse = (viewer) => {
+    const step = {
+        f: () => start(viewer),
+        b: () => stop(viewer)
+    }
+
+    return createReverseStep(step);
+}
+
 export const stop = (viewer) =>  {
 // deallocate nicely
-    viewer.stopAnimation()
+    viewer.stopAnimation();
+    viewer.setFollowMouse(false);
 }
 
 export const metamaskLogo =  {
     create,
     start,
     stop,
+    startStepWithReverse,
 }

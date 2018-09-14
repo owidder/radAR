@@ -13,4 +13,5 @@ export const slidarGlobal = {
     moveCameraNotSlides: undefined,
     slidesFolder: "slides/slowSnakes/html/",
     withHudText: true,
+    markActiveSlide: true,
 }
