@@ -2,24 +2,24 @@ import * as $ from 'jquery';
 
 import {createReverseStep} from './steps';
 
-const vsprintf = require('sprintf-js').vsprintf;
-
 const Prism = require('prismjs');
 
-export const putIntoPre = (language, html) => {
-    return vsprintf('<pre class="language-%s">%s</pre>', [language, html]);
+const render = (selector, language, _string) => {
+    const l = Prism.languages;
+    const html = Prism.highlight(_string, Prism.languages[language]);
+    $(selector).html(`<pre class="language-${language}">${html}</pre>`);
 }
 
 export const css = (selector, cssString) => {
-    const html = Prism.highlight(cssString, Prism.languages.css);
-    const withPre = putIntoPre("css", html);
-    $(selector).html(withPre);
+    render(selector, "css", cssString);
 }
 
 export const js = (selector, jsString) => {
-    const html = Prism.highlight(jsString, Prism.languages.javascript);
-    const withPre = putIntoPre("javascript", html);
-    $(selector).html(withPre);
+    render(selector, "javascript", jsString);
+}
+
+export const bash = (selector, jsString) => {
+    render(selector, "clike", jsString);
 }
 
 export const remove = (selector) => {
@@ -53,6 +53,7 @@ export const jsStepWithReverse = (selector, jsString) => {
 export const showCode = {
     css,
     js,
+    bash,
     remove,
     cssStep,
     cssStepWithReverse,

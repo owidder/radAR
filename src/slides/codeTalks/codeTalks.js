@@ -23,6 +23,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "contract-code", selectedFilename),
         slidesUtil.createSlide(createFct, "ropsten", selectedFilename),
         slidesUtil.createSlide(createFct, "rinkeby", selectedFilename),
+        slidesUtil.createSlide(createFct, "geth-rinkeby", selectedFilename),
         slidesUtil.createSlide(createFct, "metamask-logo", selectedFilename),
     ])
 
