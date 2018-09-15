@@ -1,5 +1,8 @@
 <style>
 
+    #contract-code .code {
+        font-size: 2.5em;
+    }
 
 </style>
 
@@ -23,7 +26,9 @@
             "    event NewHashValue(string, address, uint);\n" +
             "\n" +
             "    function logHashValue(string hashValue) public {    \n" +
-            "\t    emit NewHashValue(hashValue, msg.sender, block.timestamp);\n" +
+            "\t    emit NewHashValue(hashValue, \n" +
+            "                        msg.sender, \n" +
+            "                        block.timestamp);\n" +
             "    }\n" +
             "}\n");
 
