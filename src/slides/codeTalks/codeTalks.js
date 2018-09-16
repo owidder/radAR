@@ -23,7 +23,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "ethereum-video", selectedFilename),
         slidesUtil.createSlide(createFct, "whats-a-contract", selectedFilename),
         slidesUtil.createSlide(createFct, "contract-code", selectedFilename),
-        slidesUtil.createSlide(createFct, "where-to-deploy-the-contract", selectedFilename),
+        slidesUtil.createSlide(createFct, "where-to-deploy", selectedFilename),
         slidesUtil.createSlide(createFct, "no-option", selectedFilename),
         slidesUtil.createSlide(createFct, "ropsten", selectedFilename),
         slidesUtil.createSlide(createFct, "rinkeby", selectedFilename),
