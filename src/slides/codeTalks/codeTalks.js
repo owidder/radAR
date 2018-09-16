@@ -32,6 +32,8 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "infura", selectedFilename),
         slidesUtil.createSlide(createFct, "get-a-wallet", selectedFilename),
         slidesUtil.createSlide(createFct, "metamask-logo", selectedFilename),
+        slidesUtil.createSlide(createFct, "where-caniget-cryptocoins", selectedFilename),
+        slidesUtil.createSlide(createFct, "faucet-video", selectedFilename),
         slidesUtil.createSlide(createFct, "automated-deployment", selectedFilename),
     ])
 
