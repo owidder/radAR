@@ -30,6 +30,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "how2-connect2-rinkeby", selectedFilename),
         slidesUtil.createSlide(createFct, "geth-rinkeby", selectedFilename),
         slidesUtil.createSlide(createFct, "infura", selectedFilename),
+        slidesUtil.createSlide(createFct, "get-a-wallet", selectedFilename),
         slidesUtil.createSlide(createFct, "metamask-logo", selectedFilename),
     ])
 
