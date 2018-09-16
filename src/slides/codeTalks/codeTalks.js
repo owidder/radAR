@@ -27,7 +27,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "no-option", selectedFilename),
         slidesUtil.createSlide(createFct, "ropsten", selectedFilename),
         slidesUtil.createSlide(createFct, "rinkeby", selectedFilename),
-        slidesUtil.createSlide(createFct, "how-to-connect-to-rinkeby", selectedFilename),
+        slidesUtil.createSlide(createFct, "how2-connect2-rinkeby", selectedFilename),
         slidesUtil.createSlide(createFct, "geth-rinkeby", selectedFilename),
         slidesUtil.createSlide(createFct, "infura", selectedFilename),
         slidesUtil.createSlide(createFct, "metamask-logo", selectedFilename),
