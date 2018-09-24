@@ -1,7 +1,7 @@
 <style>
 
     #contract-code .code {
-        font-size: 2.5em;
+        font-size: 1.2em;
     }
 
 </style>
@@ -17,20 +17,37 @@
     (function () {
         const ID = "contract-code";
 
-        slidAR.coolText.glowText.create("#" + ID + " .title", ["Super simple contract",], "middle-large glow");
+        slidAR.coolText.glowText.create("#" + ID + " .title", ["Hash store",], "small glow");
 
         slidAR.showCode.js("#" + ID + " .code",
-            "pragma solidity ^0.4.19;\n" +
-            "contract Weisenheimer {\n" +
-            "\n" +
-            "    event NewHashValue(string, address, uint);\n" +
-            "\n" +
-            "    function logHashValue(string hashValue) public {    \n" +
-            "\t    emit NewHashValue(hashValue, \n" +
-            "                        msg.sender, \n" +
-            "                        block.timestamp);\n" +
+            "pragma solidity ^0.4.24;\n" +
+            "contract HashStore {\n" +
+            "    struct Entry {\n" +
+            "        address source;\n" +
+            "        uint blockNumber;\n" +
+            "        uint blockTimestamp;\n" +
             "    }\n" +
-            "}\n");
+            "    mapping (string => Entry) entries;\n" +
+            "\n" +
+            "    function storeHash(string hash) public {\n" +
+            "        if(entries[hash].source != 0x0) revert();\n" +
+            "        Entry memory entry = Entry(msg.sender, block.number, block.timestamp);\n" +
+            "        entries[hash] = entry;\n" +
+            "    }\n" +
+            "\n" +
+            "    function getSourceFromHash(string hash) public view returns(address) {\n" +
+            "        return entries[hash].source;\n" +
+            "    }\n" +
+            "\n" +
+            "    function getBlockNumberFromHash(string hash) public view returns(uint) {\n" +
+            "        return entries[hash].blockNumber;\n" +
+            "    }\n" +
+            "\n" +
+            "    function getBlockTimestampFromHash(string hash) public view returns(uint) {\n" +
+            "        return entries[hash].blockTimestamp;\n" +
+            "    }\n" +
+            "}\n"
+        );
 
         slidAR.initPhase.markSlideAsReady(ID);
     })()

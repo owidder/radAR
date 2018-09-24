@@ -1,0 +1,54 @@
+<style>
+
+    #contract-test .code {
+        font-size: 1.2em;
+    }
+
+</style>
+
+<div class="slidecounter"></div>
+<div class="title"></div>
+<div class="code"></div>
+
+<script>
+
+    /* global slidAR */
+
+    (function () {
+        const ID = "contract-test";
+
+        slidAR.coolText.glowText.create("#" + ID + " .title", ["Contract test",], "small glow");
+
+        slidAR.showCode.js("#" + ID + " .code",
+            "const HashStore = artifacts.require(\"./HashStore.sol\");\n" +
+            "\n" +
+            "contract(\"HashStore\", accounts => {\n" +
+            "    it(\"It should get the correct account as source when asked for stored hash\", async () => {\n" +
+            "        const hashStore = await HashStore.deployed();\n" +
+            "        await hashStore.storeHash(\"123\", {from: accounts[0]});\n" +
+            "        const source = await hashStore.getSourceFromHash.call(\"123\");\n" +
+            "        assert.equal(source, accounts[0], \"Wrong source\");\n" +
+            "    });\n" +
+            "    it(\"It should get zero as source when ask for not stored hash\", async () => {\n" +
+            "        const hashStore = await HashStore.deployed();\n" +
+            "        const source = await hashStore.getSourceFromHash.call(\"1234\");\n" +
+            "        assert.equal(source, 0, \"Wrong source\");\n" +
+            "    });\n" +
+            "    it(\"It should throw exception when store hash twice\", async () => {\n" +
+            "        const hashStore = await HashStore.deployed();\n" +
+            "        let isThrown = false;\n" +
+            "        try {\n" +
+            "            await hashStore.storeHash(\"123456\", {from: accounts[0]});\n" +
+            "            await hashStore.storeHash(\"123456\", {from: accounts[0]});\n" +
+            "        }\n" +
+            "        catch (e) {\n" +
+            "            isThrown = true;\n" +
+            "        }\n" +
+            "        assert.equal(isThrown, true, \"No exception thrown\")\n" +
+            "    });\n" +
+            "});\n"
+        );
+
+        slidAR.initPhase.markSlideAsReady(ID);
+    })()
+</script>
