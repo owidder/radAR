@@ -26,6 +26,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "and-howdoi-testit", selectedFilename),
         slidesUtil.createSlide(createFct, "truffle", selectedFilename),
         slidesUtil.createSlide(createFct, "contract-test", selectedFilename),
+        slidesUtil.createSlide(createFct, "where-isthe-client", selectedFilename),
         slidesUtil.createSlide(createFct, "where-to-deploy", selectedFilename),
         slidesUtil.createSlide(createFct, "no-option", selectedFilename),
         slidesUtil.createSlide(createFct, "ropsten", selectedFilename),
