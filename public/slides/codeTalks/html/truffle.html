@@ -10,7 +10,7 @@
 <div class="title"></div>
 <img src="./slides/codeTalks/img/truffle.png">
 <img src="./slides/codeTalks/img/ganache.png">
-<img src="./slides/codeTalks/img/drizzle.png">
+
 <div class="code"></div>
 
 <script>
@@ -20,12 +20,11 @@
     (function () {
         const ID = "truffle";
 
-        slidAR.coolText.glowText.create("#" + ID + " .title", ["Truffle + Ganache + Drizzle",], "middle-large glow");
+        slidAR.coolText.glowText.create("#" + ID + " .title", ["Truffle + Ganache",], "middle-large glow");
 
         slidAR.showCode.bash("#" + ID + " .code",
             "npm i -g truffle\n" +
-            "npm i -g ganache-cli\n" +
-            "npm i --save drizzle"
+            "npm i -g ganache-cli"
         );
 
         slidAR.initPhase.markSlideAsReady(ID);
