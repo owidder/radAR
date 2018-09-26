@@ -35,15 +35,26 @@ export const remove = (selector) => {
 }
 
 export const highlightLines = (selector, lineString) => {
+    console.log(lineString);
     const _sel = `${selector} pre`;
-    $(_sel).attr("data-line", lineString);
+    const old = $(_sel).attr("data-line");
+    if(lineString) {
+        $(_sel).attr("data-line", lineString);
+    }
+    else {
+        $(_sel).removeAttr("data-line");
+        $(`${_sel} div.line-highlight`).remove();
+    }
     refresh();
+
+    return old;
 }
 
 export const highlightLinesStep = (selector, linesString) => {
+    let old;
     return {
-        f: () => highlightLines(selector, linesString),
-        b: () => highlightLines(selector, ""),
+        f: () => old = highlightLines(selector, linesString),
+        b: () => highlightLines(selector, old),
     }
 }
 

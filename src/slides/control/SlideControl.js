@@ -283,7 +283,6 @@ class SlideControl {
                 new this.TWEEN.Tween(startPosition)
                     .to({x: currentObject.position.x, y: currentObject.position.y, z: currentObject.position.z}, (1 + Math.random()) * 1000)
                     .onUpdate((currentPosition) => {
-                        console.log(startPosition);
                         slidarGlobal.controls.target = startPosition;
                     })
                     .easing(this.TWEEN.Easing.Exponential.InOut)
