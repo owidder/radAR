@@ -1,0 +1,56 @@
+<style>
+
+    #react-component .code {
+        font-size: 1.2em;
+    }
+
+</style>
+
+<div class="slidecounter"></div>
+<div class="title"></div>
+<div class="code"></div>
+
+<script>
+
+    /* global slidAR */
+
+    (function () {
+        const ID = "react-component";
+
+        slidAR.coolText.glowText.create("#" + ID + " .title", ["Step 2: Simple React component",], "small glow");
+
+        slidAR.showCode.js("#" + ID + " .code",
+            "import React from \"react\";\n" +
+            "import {Input, Button, Card} from 'antd';\n" +
+            "import 'antd/dist/antd.css';\n" +
+            "import './HashStore.css';\n" +
+            "\n" +
+            "const {TextArea} = Input;\n" +
+            "\n" +
+            "export class HashStore extends React.Component {\n" +
+            "    constructor() {\n" +
+            "        super();\n" +
+            "        this.state = {};\n" +
+            "    }\n" +
+            "    render() {\n" +
+            "        if (!this.state.loaded) return \"Loading...\";\n" +
+            "\n" +
+            "        return (\n" +
+            "            <div className=\"hashstore\">\n" +
+            "                <Card>\n" +
+            "                    <p><TextArea onChange={(evt) => this.text = evt.target.value} placeholder=\"Some text\" autosize/></p>\n" +
+            "                    <p><Button type=\"primary\" onClick={() => this.storeHashedText()}>Store hash</Button></p>\n" +
+            "                    <p><Button type=\"primary\" onClick={() => this.getEntryFromHash()}>Get entry</Button></p>\n" +
+            "                    <p>{this.state.hashedText}</p>\n" +
+            "                    <p>{this.renderTxStatus()}</p>\n" +
+            "                </Card>\n" +
+            "                {this.renderEntry()}\n" +
+            "            </div>\n" +
+            "        )\n" +
+            "    }\n" +
+            "}\n"
+        );
+
+        slidAR.initPhase.markSlideAsReady(ID);
+    })()
+</script>

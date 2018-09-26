@@ -1,13 +1,21 @@
 import * as $ from 'jquery';
 
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+
 import {createReverseStep} from './steps';
 
-const Prism = require('prismjs');
+const Prism = window.Prism;
+
+const refresh = () => {
+    setTimeout(() => {
+        Prism.highlightAll();
+    }, 0);
+}
 
 const render = (selector, language, _string) => {
-    const l = Prism.languages;
     const html = Prism.highlight(_string, Prism.languages[language]);
-    $(selector).html(`<pre class="language-${language}">${html}</pre>`);
+    $(selector).html(`<pre class="language-${language} line-numbers"><code>${html}</code></pre>`);
+    refresh();
 }
 
 export const css = (selector, cssString) => {
@@ -24,6 +32,19 @@ export const bash = (selector, jsString) => {
 
 export const remove = (selector) => {
     $(selector).empty();
+}
+
+export const highlightLines = (selector, lineString) => {
+    const _sel = `${selector} pre`;
+    $(_sel).attr("data-line", lineString);
+    refresh();
+}
+
+export const highlightLinesStep = (selector, linesString) => {
+    return {
+        f: () => highlightLines(selector, linesString),
+        b: () => highlightLines(selector, ""),
+    }
 }
 
 export const cssStep = (selector, cssString) => {
@@ -58,5 +79,7 @@ export const showCode = {
     cssStep,
     cssStepWithReverse,
     jsStep,
-    jsStepWithReverse
+    jsStepWithReverse,
+    highlightLines,
+    highlightLinesStep,
 }

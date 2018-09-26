@@ -19,7 +19,9 @@
 
         slidAR.coolText.glowText.create("#" + ID + " .title", ["HashStore.sol",], "small glow");
 
-        slidAR.showCode.js("#" + ID + " .code",
+        const codeSelector = "#" + ID + " .code";
+
+        slidAR.showCode.js(codeSelector,
             "pragma solidity ^0.4.24;\n" +
             "contract HashStore {\n" +
             "    struct Entry {\n" +
@@ -46,8 +48,13 @@
             "    function getBlockTimestampFromHash(string hash) public view returns(uint) {\n" +
             "        return entries[hash].blockTimestamp;\n" +
             "    }\n" +
-            "}\n"
+            "}\n",
         );
+
+        const hlStep_2 = slidAR.showCode.highlightLinesStep(codeSelector, "2");
+        const hlStep_3_6 = slidAR.showCode.highlightLinesStep(codeSelector, "3-6");
+
+        slidAR.steps.set(ID, [hlStep_2, hlStep_3_6]);
 
         slidAR.initPhase.markSlideAsReady(ID);
     })()
