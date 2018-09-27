@@ -9,6 +9,8 @@ import * as nonArSlides from '../nonArSlides';
 
 import * as arTransform from '../../ar/arTransform';
 
+import {setSlideNumber, setSlideCounter} from '../../ar/hudUtil';
+
 export const PAUSE_FUNCTION = 'pauseFunction';
 export const RESUME_FUNCTION = 'resumeFunction';
 export const SLIDE_ENTER_FUNCTION = 'slideEnterFunction';
@@ -318,6 +320,7 @@ class SlideControl {
     setCurrentSlideId(slideId) {
         this.unactive();
         this.currentSlideId = slideId;
+        console.log("slideId = " + slideId);
         this.active();
     }
 
@@ -365,7 +368,17 @@ class SlideControl {
         }
     }
 
+    showCurrentStepNo() {
+        const stepsObject = this.getCurrentStepsObject();
+        if(stepsObject) {
+            const noOfSteps = stepsObject.steps ? stepsObject.steps.length : 0;
+            const currentStepNumber = stepsObject.stepNumber;
+            setSlideCounter(currentStepNumber, noOfSteps);
+        }
+    }
+
     runSlideEnterFunction() {
+        this.showCurrentStepNo();
         const config = this.getCurrentConfig();
         if(_.isUndefined(config.lastRunEnterOrExitFunction) || config.lastRunEnterOrExitFunction == SLIDE_EXIT_FUNCTION) {
             this.runScriptOnCurrentSlide(SLIDE_ENTER_FUNCTION, 0);
@@ -379,6 +392,7 @@ class SlideControl {
 
     shiftForwardCurrentSlideId() {
         const nextIndex = this.indexOfNextSlideForward();
+        setSlideNumber(nextIndex);
         this.setCurrentSlideId(this.slideIds[nextIndex]);
     }
 
@@ -389,6 +403,7 @@ class SlideControl {
 
     shiftBackwardCurrentSlideId() {
         const nextIndex = this.indexOfNextSlideBack();
+        setSlideNumber(nextIndex);
         this.setCurrentSlideId(this.slideIds[nextIndex]);
     }
 
@@ -417,10 +432,14 @@ class SlideControl {
     }
 
     renderStepNumberForSlideId(slideId) {
-        const renderCounterElement = $("#" + slideId + " .slidecounter");
-        if(!_.isEmpty(renderCounterElement)) {
-            const {steps, stepNumber} = this.getStepsObject(slideId);
-            renderCounterElement.html(stepNumber + " / " + steps.length);
+        const {steps, stepNumber} = this.getStepsObject(slideId);
+        setSlideCounter(stepNumber, steps.length);
+
+        if(slidarGlobal.renderCounterElement) {
+            const renderCounterElement = $("#" + slideId + " .slidecounter");
+            if(!_.isEmpty(renderCounterElement)) {
+                renderCounterElement.html(stepNumber + " / " + steps.length);
+            }
         }
     }
 

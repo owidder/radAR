@@ -8,3 +8,14 @@
     justify-content: center;
     width: 75%;
 }
+
+@keyframes color-change {
+    0% { color: black; }
+    25% { color: darkslategrey; }
+    75% { color: lightgrey; }
+    100% { color: darkslategrey; }
+}
+
+._hudmenu div._slideNumber, ._hudmenu div._slideCounter {
+    animation: color-change 5s ease-in-out infinite;
+}
