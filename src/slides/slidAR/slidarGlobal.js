@@ -15,4 +15,5 @@ export const slidarGlobal = {
     withHudText: true,
     markActiveSlide: true,
     renderCounterElement: false,
+    bodyType: undefined,
 }

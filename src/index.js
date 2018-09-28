@@ -34,6 +34,8 @@ const bodyType = query.firstParamSet([
     BODY_TYPE_CODE_TALKS,
 ]);
 
+slidarGlobal.bodyType = bodyType;
+
 const paramValue = query.paramValue(bodyType);
 
 switch (bodyType) {

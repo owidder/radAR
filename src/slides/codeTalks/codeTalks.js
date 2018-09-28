@@ -32,7 +32,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "client", selectedFilename),
         slidesUtil.createSlide(createFct, "truffle-json", selectedFilename),
         slidesUtil.createSlide(createFct, "truffle-migrate-2", selectedFilename),
-        slidesUtil.createSlide(createFct, "hashstore-json", selectedFilename),
+        slidesUtil.createSlide(createFct, "hashstore-json-2", selectedFilename),
         slidesUtil.createSlide(createFct, "drizzle", selectedFilename),
         slidesUtil.createSlide(createFct, "react-component", selectedFilename),
         slidesUtil.createSlide(createFct, "where-to-deploy", selectedFilename),

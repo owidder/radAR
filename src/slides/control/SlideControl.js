@@ -9,7 +9,7 @@ import * as nonArSlides from '../nonArSlides';
 
 import * as arTransform from '../../ar/arTransform';
 
-import {setSlideNumber, setSlideCounter} from '../../ar/hudUtil';
+import {setSlideNumber, setSlideCounter, setNoThreeLink} from '../../ar/hudUtil';
 
 export const PAUSE_FUNCTION = 'pauseFunction';
 export const RESUME_FUNCTION = 'resumeFunction';
@@ -320,7 +320,7 @@ class SlideControl {
     setCurrentSlideId(slideId) {
         this.unactive();
         this.currentSlideId = slideId;
-        console.log("slideId = " + slideId);
+        setNoThreeLink(slideId);
         this.active();
     }
 
