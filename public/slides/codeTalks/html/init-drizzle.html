@@ -30,7 +30,9 @@
         const codeSelector = "#" + ID + " .code";
 
         slidAR.showCode.js(codeSelector,
+            "...\n" +
             "import {Drizzle, generateStore} from \"drizzle\";\n" +
+            "import HashStoreContract from \"./contracts/HashStore.json\";\n" +
             "...\n" +
             "export class HashStore extends React.Component {\n" +
             "...\n" +
@@ -55,15 +57,16 @@
         );
 
         const steps = [];
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "1"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "5-16"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "6"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "7"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "9-15"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "10"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "2"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "3"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "7-18"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "8"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "9"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "11-17"));
         steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "12"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "13"));
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "18-20"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "14"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "15"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "20-22"));
 
         slidAR.steps.set(ID, steps);
 
