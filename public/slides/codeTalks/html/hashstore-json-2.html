@@ -47,6 +47,7 @@
             "      \"stateMutability\": \"nonpayable\",\n" +
             "      \"type\": \"function\"\n" +
             "    },\n" +
+            "    ...\n" +
             "  ],\n" +
             "  \"bytecode\": \"0x6080604052348015610010...\",\n" +
             "  ...\n" +
@@ -64,14 +65,11 @@
             "}",
         );
 
-        const hlStep_1 = slidAR.showCode.highlightLinesStep(codeSelector, "1");
-        const hlStep_2_3 = slidAR.showCode.highlightLinesStep(codeSelector, "2-3");
-        const hlStep_4 = slidAR.showCode.highlightLinesStep(codeSelector, "4");
-        const hlStep_6 = slidAR.showCode.highlightLinesStep(codeSelector, "6");
-        const hlStep_8_14 = slidAR.showCode.highlightLinesStep(codeSelector, "8-14");
-        const hlStep_15_21 = slidAR.showCode.highlightLinesStep(codeSelector, "15-21");
+        const hlStep_2 = slidAR.showCode.highlightLinesStep(codeSelector, "2");
+        const hlStep_3_19 = slidAR.showCode.highlightLinesStep(codeSelector, "3-19");
+        const hlStep_24_30 = slidAR.showCode.highlightLinesStep(codeSelector, "24-30");
 
-        slidAR.steps.set(ID, [hlStep_1, hlStep_2_3, hlStep_4, hlStep_6, hlStep_8_14, hlStep_15_21]);
+        slidAR.steps.set(ID, [hlStep_2, hlStep_3_19, hlStep_24_30]);
 
         slidAR.initPhase.markSlideAsReady(ID);
     })()
