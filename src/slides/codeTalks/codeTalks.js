@@ -39,6 +39,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "react-component", selectedFilename),
         slidesUtil.createSlide(createFct, "init-drizzle", selectedFilename),
         slidesUtil.createSlide(createFct, "start-transaction", selectedFilename),
+        slidesUtil.createSlide(createFct, "get-transaction-status", selectedFilename),
         slidesUtil.createSlide(createFct, "where-to-deploy", selectedFilename),
         slidesUtil.createSlide(createFct, "no-option", selectedFilename),
         slidesUtil.createSlide(createFct, "ropsten", selectedFilename),
