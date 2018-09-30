@@ -51,7 +51,9 @@
         );
 
         const steps = [];
-        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "1-2,11-16"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "2"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "1"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "11-16"));
 
         slidAR.steps.set(ID, steps);
 
