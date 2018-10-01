@@ -40,7 +40,7 @@ const addHudButtons = (_onLeftClick, _onRightClick) => {
     const onLeftClick = _.isFunction(_onLeftClick) ? _onLeftClick : () => slideControl.moveOffsetOnAllSlides(+10);
     const onRightClick = _.isFunction(_onRightClick) ? _onRightClick : () => slideControl.moveOffsetOnAllSlides(-10);
 
-    hudUtil.addLeftRightButtons("#_hud", onLeftClick, onRightClick);
+    hudUtil.addButtons("#_hud", onLeftClick, onRightClick);
 }
 
 const createPositionFunction = (type, radius) => {

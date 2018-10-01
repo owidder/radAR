@@ -8,7 +8,7 @@ import {slidarGlobal} from '../slides/slidAR/slidarGlobal';
 let hudmenuResolve;
 const hudMenuPromise = new Promise(resolve => hudmenuResolve = resolve);
 
-export const addLeftRightButtons = (hudSelector, onLeftClick, onRightClick) => {
+export const addButtons = (hudSelector, onLeftClick, onRightClick) => {
     $(hudSelector).empty();
 
     if(slidarGlobal.withAr) {
