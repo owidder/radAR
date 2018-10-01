@@ -96,9 +96,8 @@
 
         slidAR.coolText.glowText.create("#" + ID + " .cube-front", ["Block-", "chain", "Clients",], "middle-large glow");
 
-        startStopStep = slidAR.cube.startStopAnimationStepWithReverse();
-
-        slidAR.steps.set(ID, [startStopStep.step, startStopStep.reverseStep]);
+        slidAR.scripts.slideEnter(ID, () => slidAR.cube.startStopAnimation(true));
+        slidAR.scripts.slideExit(ID, () => slidAR.cube.startStopAnimation(false));
 
         slidAR.initPhase.markSlideAsReady(ID);
     })()
