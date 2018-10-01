@@ -8,7 +8,7 @@ import {slidarGlobal} from '../slides/slidAR/slidarGlobal';
 let hudmenuResolve;
 const hudMenuPromise = new Promise(resolve => hudmenuResolve = resolve);
 
-export const addButtons = (hudSelector, onLeftClick, onRightClick) => {
+export const addButtons = (hudSelector, onLeftClick, onRightClick, onUpClick, onDownClick) => {
     $(hudSelector).empty();
 
     if(slidarGlobal.withAr) {
@@ -26,9 +26,9 @@ export const addButtons = (hudSelector, onLeftClick, onRightClick) => {
         }
 
         addSlideNumber(menu);
-        addHudButton(menu, "arrowup", "arrow_upward", () => {});
+        addHudButton(menu, "arrowup", "arrow_upward", onUpClick);
         addSlideCounter(menu);
-        addHudButton(menu, "arrowdown", "arrow_downward", () => {});
+        addHudButton(menu, "arrowdown", "arrow_downward", onDownClick);
         addNoThreeLink(menu);
 
         addHudButton(menu, "righthud", "arrow_forward", onRightClick);

@@ -5,7 +5,14 @@ import {setArPositionRotation, TYPE_RING, TYPE_SPHERE, TYPE_SPHERE_RANDOM, ringI
 import {init} from '../ar/argonApp';
 import {initThree} from '../three/threeApp';
 import {connect} from './control/commandHub';
-import {executeCommand, COMMAND_INIT, COMMAND_NEXT, COMMAND_PREV} from './control/commandExecutor';
+import {
+    executeCommand,
+    COMMAND_INIT,
+    COMMAND_NEXT,
+    COMMAND_PREV,
+    COMMAND_BACK,
+    COMMAND_FWD
+} from './control/commandExecutor';
 import {slideControl} from './control/SlideControl';
 import * as key from './slidAR/key';
 import * as query from '../util/query';
@@ -36,11 +43,13 @@ const checkIfMaster = () => {
     slidarGlobal.isMaster = !_.isUndefined(master);
 }
 
-const addHudButtons = (_onLeftClick, _onRightClick) => {
+const addHudButtons = (_onLeftClick, _onRightClick, _onUpClick, _onDownClick) => {
     const onLeftClick = _.isFunction(_onLeftClick) ? _onLeftClick : () => slideControl.moveOffsetOnAllSlides(+10);
     const onRightClick = _.isFunction(_onRightClick) ? _onRightClick : () => slideControl.moveOffsetOnAllSlides(-10);
+    const onUpClick = _.isFunction(_onUpClick) ? _onUpClick : () => {};
+    const onDownClick = _.isFunction(_onDownClick) ? _onDownClick : () => {};
 
-    hudUtil.addButtons("#_hud", onLeftClick, onRightClick);
+    hudUtil.addButtons("#_hud", onLeftClick, onRightClick, onUpClick, onDownClick);
 }
 
 const createPositionFunction = (type, radius) => {
@@ -156,12 +165,11 @@ export const initSlides = async (rootSelector, slideCreateFunction, param) => {
 
         renderer.render(scene, camera);
         addHudButtons(
-            () => {
-                executeCommand(COMMAND_PREV)
-            },
-            () => {
-                executeCommand(COMMAND_NEXT)
-            });
+            () => {executeCommand(COMMAND_PREV)},
+            () => {executeCommand(COMMAND_NEXT)},
+            () => {executeCommand(COMMAND_BACK)},
+            () => {executeCommand(COMMAND_FWD)},
+            );
     }
     else {
         set_THREE_argon();
