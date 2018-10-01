@@ -107,9 +107,17 @@ export const initSlides = async (rootSelector, slideCreateFunction, param) => {
     const selectedFilename = query.paramValue("slide");
     const nonar = query.paramValue("nonar");
     const type = query.paramValue("type") || TYPE_RING;
-    const radius = query.paramValue("radius");
     const three = query.paramValue("three");
     checkIfMaster();
+
+    let radius = query.paramValue("radius");
+    if(radius > 0) {
+        console.log("factor = " + slidarGlobal.height * Number(radius));
+    }
+    else {
+        radius = 20100000 / slidarGlobal.width;
+        console.log("radius = " + radius);
+    }
 
     const positionFunction = createPositionFunction(type, radius);
 
