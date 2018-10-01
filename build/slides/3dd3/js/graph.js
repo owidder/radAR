@@ -7,23 +7,23 @@
 
 (function () {
     window._graph_pie = function pie() {
-        window._charts_pie("#graphcube .front", 200, 200);
+        window._charts_pie("#graphcube .cube-front", 200, 200);
     }
 
     window._graph_donut = function () {
-        window._charts_donut("#graphcube .right", 200, 200)
+        window._charts_donut("#graphcube .cube-right", 200, 200)
     }
 
     window._graph_clean_pie = function () {
-        window._charts_clean("#graphcube .front");
+        window._charts_clean("#graphcube .cube-front");
     }
 
     window._graph_clean_donut = function () {
-        window._charts_clean("#graphcube .right");
+        window._charts_clean("#graphcube .cube-right");
     }
 
     window._graph_pin = function () {
-        var svg = d3.selectAll("#graphcube .top")
+        var svg = d3.selectAll("#graphcube .cube-top")
             .append("svg")
             .attr("width", 200)
             .attr("height", 200)
@@ -49,8 +49,8 @@
 
     window._graph_pin_animate = function () {
         paused = false;
-        var svg = document.querySelector('#graphcube .top svg')
-        var div = document.querySelector('#graphcube .top')
+        var svg = document.querySelector('#graphcube .cube-top svg')
+        var div = document.querySelector('#graphcube .cube-top')
 
         function horizontalBounce() {
             if(!paused) {

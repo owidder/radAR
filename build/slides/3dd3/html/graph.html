@@ -130,10 +130,10 @@
             "\n" +
             "horizontalBounce()\n")
 
-        const tooltipStepFront = slidAR.tooltip.createPtStepWithReverse("div.front canvas", "#graphcube .front", slidAR.tooltip.TOP);
-        const tooltipStepLeft = slidAR.tooltip.createPtStepWithReverse("div.right canvas", "#graphcube .right", slidAR.tooltip.TOP);
-        const tooltipStepTop = slidAR.tooltip.createPtStepWithReverse("div.top svg", "#graphcube .top", slidAR.tooltip.TOP);
-        const tooltipStepBack = slidAR.tooltip.createPtStepWithReverse("div.back div", "#graphcube .back", slidAR.tooltip.TOP);
+        const tooltipStepFront = slidAR.tooltip.createPtStepWithReverse("div.front canvas", "#graphcube .cube-front", slidAR.tooltip.TOP);
+        const tooltipStepLeft = slidAR.tooltip.createPtStepWithReverse("div.right canvas", "#graphcube .cube-right", slidAR.tooltip.TOP);
+        const tooltipStepTop = slidAR.tooltip.createPtStepWithReverse("div.top svg", "#graphcube .cube-top", slidAR.tooltip.TOP);
+        const tooltipStepBack = slidAR.tooltip.createPtStepWithReverse("div.back div", "#graphcube .cube-back", slidAR.tooltip.TOP);
 
         const imageCssCode = slidAR.showCode.cssStepWithReverse("#graph .code",
             "div.back {\n" +
@@ -142,9 +142,9 @@
             "   background-position: left top;\n" +
             "}\n")
 
-        const imageStepAngels = slidAR.classUtil.setClassStepWithReverse("#graphcube .back", "with-angels");
-        const imageStepWater = slidAR.classUtil.setClassStepWithReverse("#graphcube .left", "with-water");
-        const imageStepBird = slidAR.classUtil.setClassStepWithReverse("#graphcube .bottom", "with-bird");
+        const imageStepAngels = slidAR.classUtil.setClassStepWithReverse("#graphcube .cube-back", "with-angels");
+        const imageStepWater = slidAR.classUtil.setClassStepWithReverse("#graphcube .cube-left", "with-water");
+        const imageStepBird = slidAR.classUtil.setClassStepWithReverse("#graphcube .cube-bottom", "with-bird");
 
         slidAR.cube.create("#graphcube", 200);
 
