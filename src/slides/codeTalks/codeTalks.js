@@ -51,12 +51,17 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "infura", selectedFilename),
         slidesUtil.createSlide(createFct, "get-a-wallet", selectedFilename),
         slidesUtil.createSlide(createFct, "metamask-logo", selectedFilename),
+        slidesUtil.createSlide(createFct, "where-caniget-cryptocoins", selectedFilename),
+        slidesUtil.createSlide(createFct, "faucet-video", selectedFilename),
+        slidesUtil.createSlide(createFct, "cmon-deploy", selectedFilename),
         slidesUtil.createSlide(createFct, "seed-phrase", selectedFilename),
         slidesUtil.createSlide(createFct, "truffle-json-2", selectedFilename),
         slidesUtil.createSlide(createFct, "deploy-via-infura", selectedFilename),
-        slidesUtil.createSlide(createFct, "where-caniget-cryptocoins", selectedFilename),
-        slidesUtil.createSlide(createFct, "faucet-video", selectedFilename),
-        slidesUtil.createSlide(createFct, "automated-deployment", selectedFilename),
+        slidesUtil.createSlide(createFct, "etherscan-contract", selectedFilename),
+        slidesUtil.createSlide(createFct, "nothing", selectedFilename),
+        slidesUtil.createSlide(createFct, "web3-fallback", selectedFilename),
+        slidesUtil.createSlide(createFct, "web3-injected", selectedFilename),
+        slidesUtil.createSlide(createFct, "the-end", selectedFilename),
     ])
 
     if(_.isEmpty(selectedFilename)) {
