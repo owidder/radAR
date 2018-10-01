@@ -26,7 +26,9 @@ export const addLeftRightButtons = (hudSelector, onLeftClick, onRightClick) => {
         }
 
         addSlideNumber(menu);
+        addHudButton(menu, "arrowup", "arrow_upward", () => {});
         addSlideCounter(menu);
+        addHudButton(menu, "arrowdown", "arrow_downward", () => {});
         addNoThreeLink(menu);
 
         addHudButton(menu, "righthud", "arrow_forward", onRightClick);
@@ -59,6 +61,9 @@ export const setSlideCounter = (stepNo, noOfSteps) => {
     hudMenuPromise.then(hudmenu => {
         const text = noOfSteps > 0 ? `${stepNo} / ${noOfSteps}` : "";
         hudmenu.selectAll("div._slideCounter").text(text)
+
+        showArroDown(stepNo < noOfSteps);
+        showArrowUp(stepNo > 0);
     });
 }
 
@@ -67,6 +72,20 @@ export const setNoThreeLink = (slideId) => {
         const link = `${window.location.origin}${window.location.pathname}?${slidarGlobal.bodyType}=0&slide=${slideId}`;
         hudmenu.selectAll("div._noThree a").attr("href", link);
     })
+}
+
+const showArrowUp = (trueIfShow) => {
+    hudMenuPromise.then(hudmenu => {
+        hudmenu.selectAll(".arrowup")
+            .style("visibility", trueIfShow ? "visible" : "hidden")
+    });
+}
+
+const showArroDown = (trueIfShow) => {
+    hudMenuPromise.then(hudmenu => {
+        hudmenu.selectAll(".arrowdown")
+            .style("visibility", trueIfShow ? "visible" : "hidden")
+    });
 }
 
 export const addHudButton = (parent, classname, materialIcon, onClick) => {
