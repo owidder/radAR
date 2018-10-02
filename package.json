@@ -85,7 +85,7 @@
       "changeOrigin": true
     }
   },
-  "homepage": "https://cdn.rawgit.com/owidder/radAR/ct101/build",
+  "homepage": "https://owidder.github.io/radAR/build",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
