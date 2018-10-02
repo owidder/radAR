@@ -124,7 +124,7 @@ export const initSlides = async (rootSelector, slideCreateFunction, param) => {
         console.log("factor = " + slidarGlobal.height * Number(radius));
     }
     else {
-        radius = 12400000 / slidarGlobal.height;
+        radius = 12400000 / Math.min(slidarGlobal.height, slidarGlobal.width);
         console.log("radius = " + radius);
     }
 
