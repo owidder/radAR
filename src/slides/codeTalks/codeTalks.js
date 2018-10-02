@@ -20,7 +20,7 @@ export const init = async (rootSelector, selectedFilename) => {
     await Promise.all([
         slidesUtil.createSlide(createFct, "title-cube", selectedFilename),
         slidesUtil.createSlide(createFct, "whats-a-blockchain", selectedFilename),
-        slidesUtil.createSlide(createFct, "ethereum-video", selectedFilename),
+        slidesUtil.createSlide(createFct, slidarGlobal.isFull ? "ethereum-video" : "ethereum-image", selectedFilename),
         slidesUtil.createSlide(createFct, "whats-a-contract", selectedFilename),
         slidesUtil.createSlide(createFct, "contract-code", selectedFilename),
         slidesUtil.createSlide(createFct, "and-howdoi-testit", selectedFilename),
@@ -52,7 +52,7 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "get-a-wallet", selectedFilename),
         slidesUtil.createSlide(createFct, "metamask-logo", selectedFilename),
         slidesUtil.createSlide(createFct, "where-caniget-cryptocoins", selectedFilename),
-        slidesUtil.createSlide(createFct, "faucet-video", selectedFilename),
+        slidesUtil.createSlide(createFct, slidarGlobal.isFull ? "faucet-video" : "faucet-image", selectedFilename),
         slidesUtil.createSlide(createFct, "cmon-deploy", selectedFilename),
         slidesUtil.createSlide(createFct, "seed-phrase", selectedFilename),
         slidesUtil.createSlide(createFct, "truffle-json-2", selectedFilename),

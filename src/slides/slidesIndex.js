@@ -128,6 +128,9 @@ export const initSlides = async (rootSelector, slideCreateFunction, param) => {
         console.log("radius = " + radius);
     }
 
+    const full = query.paramValue("full");
+    slidarGlobal.isFull = (full > 0);
+
     const positionFunction = createPositionFunction(type, radius);
 
     if(_.isEmpty(selectedFilename) && _.isEmpty(nonar) && _.isEmpty(three)) {

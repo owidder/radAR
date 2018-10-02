@@ -16,4 +16,5 @@ export const slidarGlobal = {
     markActiveSlide: true,
     renderCounterElement: false,
     bodyType: undefined,
+    isFull: false,
 }
