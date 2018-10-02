@@ -62,6 +62,8 @@ export const init = async (rootSelector, selectedFilename) => {
         slidesUtil.createSlide(createFct, "web3-fallback", selectedFilename),
         slidesUtil.createSlide(createFct, "web3-injected", selectedFilename),
         slidesUtil.createSlide(createFct, "the-end", selectedFilename),
+        slidesUtil.createSlide(createFct, "qrcode-radar", selectedFilename),
+        slidesUtil.createSlide(createFct, "bye", selectedFilename),
     ])
 
     if(_.isEmpty(selectedFilename)) {
