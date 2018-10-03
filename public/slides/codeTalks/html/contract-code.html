@@ -59,14 +59,19 @@
             "}\n",
         );
 
-        const hlStep_1 = slidAR.showCode.highlightLinesStep(codeSelector, "1");
-        const hlStep_2 = slidAR.showCode.highlightLinesStep(codeSelector, "2");
-        const hlStep_3_7 = slidAR.showCode.highlightLinesStep(codeSelector, "3-7");
-        const hlStep_8 = slidAR.showCode.highlightLinesStep(codeSelector, "8");
-        const hlStep_10_14 = slidAR.showCode.highlightLinesStep(codeSelector, "10-14");
-        const hlStep_getter = slidAR.showCode.highlightLinesStep(codeSelector, "16-18,20-22,24-26");
+        const steps = [];
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "1"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "2"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "3-7"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "8"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "10-14"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "10"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "11"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "12"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "13"));
+        steps.push(slidAR.showCode.highlightLinesStep(codeSelector, "16-18,20-22,24-26"));
 
-        slidAR.steps.set(ID, [hlStep_1, hlStep_2, hlStep_3_7, hlStep_8, hlStep_10_14, hlStep_getter]);
+        slidAR.steps.set(ID, steps);
 
         slidAR.initPhase.markSlideAsReady(ID);
     })()
