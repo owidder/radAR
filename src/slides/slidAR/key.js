@@ -1,6 +1,16 @@
 import {Keyboard} from 'keyboardjs';
 
-import {executeCommand, COMMAND_BACK, COMMAND_FWD, COMMAND_NEXT, COMMAND_PREV, COMMAND_LAST, COMMAND_FIRST} from '../control/commandExecutor';
+import {
+    executeCommand,
+    COMMAND_BACK,
+    COMMAND_FWD,
+    COMMAND_NEXT,
+    COMMAND_PREV,
+    COMMAND_LAST,
+    COMMAND_FIRST,
+    COMMAND_ADJUST_RIGHT,
+    COMMAND_ADJUST_LEFT,
+} from '../control/commandExecutor';
 
 const usLocale = require('keyboardjs/locales/us');
 
@@ -46,6 +56,14 @@ export const init = () => {
 
     keyboard.bind('f', () => {
         executeCommand(COMMAND_FIRST)
+    })
+
+    keyboard.bind('j', () => {
+        executeCommand(COMMAND_ADJUST_LEFT)
+    })
+
+    keyboard.bind('k', () => {
+        executeCommand(COMMAND_ADJUST_RIGHT)
     })
 
 }

@@ -25,6 +25,8 @@ export const COMMAND_LAST = "last";
 export const COMMAND_FIRST = "first";
 export const COMMAND_STATUS = "status";
 export const COMMAND_INIT = "init";
+export const COMMAND_ADJUST_RIGHT = "adjust-right";
+export const COMMAND_ADJUST_LEFT = "adjust-left";
 
 export const executeCommand = async (command, argument) => {
 
@@ -73,6 +75,14 @@ export const executeCommand = async (command, argument) => {
 
         case COMMAND_INIT:
             sendStatusString();
+            break;
+
+        case COMMAND_ADJUST_RIGHT:
+            slideControl.moveOffsetOnAllSlides(+1);
+            break;
+
+        case COMMAND_ADJUST_LEFT:
+            slideControl.moveOffsetOnAllSlides(-1);
             break;
 
         case "connected":
